@@ -1,0 +1,7 @@
+{
+  "get-thumbnails": {
+    "120x120": "../../../mock_images/120x120.png",
+    "160x120": "../../../mock_images/160x120.png",
+    "400x300": "../../../mock_images/400x300.png"
+  }
+}
