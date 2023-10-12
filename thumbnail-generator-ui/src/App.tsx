@@ -1,14 +1,10 @@
-import {
-  ImageChooserScreen,
-  LoginScreen,
-  ThumbnailViewerScreen,
-} from "./screens";
+import { CustomRouter } from "./routing";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <ThumbnailViewerScreen />
+      <CustomRouter />
     </>
   );
 }

@@ -8,8 +8,11 @@ import {
   ImageListItem,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { useNavigate } from "react-router-dom";
 
 function ThumbnailViewerScreen() {
+  const navigate = useNavigate();
+
   const itemData = [
     "../../../mock_images/120x120.png",
     "../../../mock_images/160x120.png",
@@ -43,8 +46,13 @@ function ThumbnailViewerScreen() {
         ))}
       </ImageList>
       <CardActions>
-        <Button variant="contained">Choose another image</Button>
-        <Button variant="contained">Logout</Button>
+        <Button variant="contained" onClick={() => navigate("/image-chooser")}>
+          Choose another image
+        </Button>
+
+        <Button variant="contained" onClick={() => navigate("/login")}>
+          Logout
+        </Button>
       </CardActions>
     </Card>
   );

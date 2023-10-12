@@ -6,8 +6,11 @@ import {
   Typography,
   CardMedia,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function ImageChooserScreen() {
+  const navigate = useNavigate();
+
   return (
     <Card
       sx={{
@@ -26,8 +29,17 @@ function ImageChooserScreen() {
       </CardContent>
       <CardActions>
         <Button variant="contained">Choose image</Button>
-        <Button variant="contained">Generate thumbnails</Button>
-        <Button variant="contained">Logout</Button>
+
+        <Button
+          variant="contained"
+          onClick={() => navigate("/thumbnail-viewer")}
+        >
+          Generate thumbnails
+        </Button>
+
+        <Button variant="contained" onClick={() => navigate("/login")}>
+          Logout
+        </Button>
       </CardActions>
     </Card>
   );
