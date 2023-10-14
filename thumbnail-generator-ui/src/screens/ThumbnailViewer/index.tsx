@@ -9,15 +9,14 @@ import {
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useNavigate } from "react-router-dom";
+import { useMutationState } from "@tanstack/react-query";
 
 function ThumbnailViewerScreen() {
   const navigate = useNavigate();
-
-  const itemData = [
-    "../../../mock_images/120x120.png",
-    "../../../mock_images/160x120.png",
-    "../../../mock_images/400x300.png",
-  ];
+  const data = useMutationState({
+    filters: { mutationKey: ["thumbnails"] },
+  });
+  const itemData = data[data.length - 1]?.data;
 
   return (
     <Card
@@ -33,17 +32,18 @@ function ThumbnailViewerScreen() {
         </Typography>
       </CardContent>
       <ImageList>
-        {itemData.map((item) => (
-          <ImageListItem key={item}>
-            <img
-              srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              src={`${item}?w=164&h=164&fit=crop&auto=format`}
-            />
-            <Button variant="contained" startIcon={<ContentCopyIcon />}>
-              Copy URL
-            </Button>
-          </ImageListItem>
-        ))}
+        {Array.isArray(itemData) &&
+          itemData.map((item) => (
+            <ImageListItem key={item}>
+              <img
+                srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={`${item}?w=164&h=164&fit=crop&auto=format`}
+              />
+              <Button variant="contained" startIcon={<ContentCopyIcon />}>
+                Copy URL
+              </Button>
+            </ImageListItem>
+          ))}
       </ImageList>
       <CardActions>
         <Button variant="contained" onClick={() => navigate("/image-chooser")}>
