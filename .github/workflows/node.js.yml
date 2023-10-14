@@ -24,11 +24,12 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+          working-directory: thumbnail-generator-ui
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Move to frontend folder
-        run: cd ./thumbnail-generator-ui
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
