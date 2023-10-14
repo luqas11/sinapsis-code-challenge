@@ -15,20 +15,22 @@ import { AppContainer } from "../../components";
 
 function ThumbnailViewerScreen() {
   const navigate = useNavigate();
+
   const data = useMutationState({
     filters: { mutationKey: ["thumbnails"] },
   });
   const itemData = data[data.length - 1]?.data;
 
-  const CustomImageListItem = styled(Card)({
-    height: 200,
-    width: 250,
+  const ImageCard = styled(Card)({
+    height: 270,
+    width: 200,
     backgroundColor: "#333333",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    gap: 10,
+    gap: 14,
+    padding: 10,
   });
 
   const ImageItem = styled("img")({
@@ -40,23 +42,23 @@ function ThumbnailViewerScreen() {
   return (
     <AppContainer>
       <Typography variant="h4">Generated thumbnails</Typography>
-      <Typography variant="body1">
-        The thumbnails were successfully generated.
-      </Typography>
+      {Array.isArray(itemData) && (
+        <Typography variant="body1">
+          The thumbnails were successfully generated.
+        </Typography>
+      )}
       <Grid container justifyContent="center" sx={{ gap: 4 }}>
         {Array.isArray(itemData) ? (
           itemData.map((item, index) => (
-            <Grid item key={item}>
-              <Grow in style={{ transitionDelay: String(index * 30) + "ms" }}>
-                <CustomImageListItem>
-                  <ImageItem
-                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                  />
+            <Grid item key={item.label}>
+              <Grow in style={{ transitionDelay: index * 50 + "ms" }}>
+                <ImageCard>
+                  <Typography variant="h6">{item.label}</Typography>
+                  <ImageItem src={item.url} />
                   <Button variant="contained" startIcon={<ContentCopyIcon />}>
                     Copy URL
                   </Button>
-                </CustomImageListItem>
+                </ImageCard>
               </Grow>
             </Grid>
           ))

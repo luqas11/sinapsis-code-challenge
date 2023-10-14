@@ -1,7 +1,16 @@
 {
-  "get-thumbnails": {
-    "120x120": "../../../mock_images/120x120.png",
-    "160x120": "../../../mock_images/160x120.png",
-    "400x300": "../../../mock_images/400x300.png"
-  }
+  "get-thumbnails": [
+    {
+      "label": "120x120",
+      "url": "../../../mock_images/120x120.png"
+    },
+    {
+      "label": "160x120",
+      "url": "../../../mock_images/160x120.png"
+    },
+    {
+      "label": "400x300",
+      "url": "../../../mock_images/400x300.png"
+    }
+  ]
 }

@@ -24,8 +24,7 @@ function ImageChooserScreen() {
     mutationKey: ["thumbnails"],
     mutationFn: async (selectedImage: string) => {
       const response = await axios.get("http://localhost:3000/get-thumbnails");
-      const thumbnailArray = Object.values(response.data);
-      return thumbnailArray;
+      return response.data;
     },
   });
 
@@ -53,8 +52,10 @@ function ImageChooserScreen() {
     <>
       <AppContainer>
         <Typography variant="h4">Choose an image</Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" textAlign="center">
           Only JPEG and PNG files with a maximum size of 11MB are allowed.
+          <br></br>
+          Images will be automatically cropped to fit the thumbnails sizes.
         </Typography>
         <Card>
           <ImageCardActionArea
