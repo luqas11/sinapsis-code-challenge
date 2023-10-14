@@ -2,21 +2,25 @@ import {
   Card,
   Button,
   CardActions,
-  CardContent,
   Typography,
+  CardActionArea,
   CardMedia,
+  Box,
 } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { styled } from "@mui/system";
+import { useState } from "react";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { AppContainer } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 function ImageChooserScreen() {
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
-  const image = "../../../mock_images/original.jpg";
 
   const mutation = useMutation({
     mutationKey: ["thumbnails"],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     mutationFn: async (selectedImage: string) => {
       const response = await axios.get("http://localhost:3000/get-thumbnails");
       const thumbnailArray = Object.values(response.data);
@@ -29,38 +33,62 @@ function ImageChooserScreen() {
     navigate("/thumbnail-viewer");
   };
 
+  const ImageCardActionArea = styled(CardActionArea)({
+    height: 300,
+    width: 350,
+    backgroundColor: "#333333",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  });
+
+  const ImageCardMedia = styled(CardMedia)({
+    objectFit: "contain",
+    width: "100%",
+    height: "100%",
+  });
+
   return (
-    <Card
-      sx={{
-        maxWidth: 350,
-        backgroundColor: "#AAAAFF",
-      }}
-    >
-      <CardContent>
+    <>
+      <AppContainer>
         <Typography variant="h4">Choose an image</Typography>
         <Typography variant="body1">
           Only JPEG and PNG files with a maximum size of 11MB are allowed.
         </Typography>
-      </CardContent>
-      <CardContent>
-        {mutation.isPending ? (
-          "Loading..."
-        ) : (
-          <CardMedia component="img" image={image} />
-        )}
-      </CardContent>
-      <CardActions>
-        <Button variant="contained">Choose image</Button>
-
-        <Button variant="contained" onClick={() => getThumbnails(image)}>
-          Generate thumbnails
-        </Button>
-
-        <Button variant="contained" onClick={() => navigate("/login")}>
-          Logout
-        </Button>
-      </CardActions>
-    </Card>
+        <Card>
+          <ImageCardActionArea
+            onClick={() => setImage("../../../mock_images/original.jpg")}
+          >
+            {image ? (
+              <ImageCardMedia component="img" image={image} />
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
+                <Typography variant="body1">
+                  Choose an image from your local files.
+                </Typography>
+              </Box>
+            )}
+          </ImageCardActionArea>
+        </Card>
+        <CardActions>
+          <Button
+            variant="contained"
+            size="large"
+            disabled={!image}
+            onClick={() => getThumbnails(image)}
+          >
+            Generate thumbnails
+          </Button>
+        </CardActions>
+      </AppContainer>
+    </>
   );
 }
 
