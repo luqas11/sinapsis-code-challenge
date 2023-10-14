@@ -2,8 +2,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
 
-const AppContainer = ({ children }) => {
-  const { logout } = useAuth0();
+type Props = {
+  children: React.ReactNode;
+};
+
+const AppContainer = ({ children }: Props) => {
+  const { logout, isAuthenticated } = useAuth0();
 
   return (
     <>
@@ -12,15 +16,17 @@ const AppContainer = ({ children }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Thumbnail Generator
           </Typography>
-          <Button
-            onClick={() =>
-              logout({
-                logoutParams: { returnTo: window.location.origin + "/login" },
-              })
-            }
-          >
-            Logout
-          </Button>
+          {isAuthenticated && (
+            <Button
+              onClick={() =>
+                logout({
+                  logoutParams: { returnTo: window.location.origin + "/login" },
+                })
+              }
+            >
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Box

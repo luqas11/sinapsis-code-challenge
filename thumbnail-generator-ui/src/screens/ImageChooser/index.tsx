@@ -1,3 +1,9 @@
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { styled } from "@mui/system";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import {
   Card,
   Button,
@@ -7,13 +13,8 @@ import {
   CardMedia,
   Box,
 } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { styled } from "@mui/system";
-import { useState } from "react";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+
 import { AppContainer } from "../../components";
-import { useNavigate } from "react-router-dom";
 
 function ImageChooserScreen() {
   const [image, setImage] = useState("");

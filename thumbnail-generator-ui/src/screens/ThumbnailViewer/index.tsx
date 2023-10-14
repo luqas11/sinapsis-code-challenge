@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+import { useMutationState } from "@tanstack/react-query";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { styled } from "@mui/system";
 import {
   Button,
   Typography,
@@ -6,11 +10,8 @@ import {
   Card,
   Grow,
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { useNavigate } from "react-router-dom";
-import { useMutationState } from "@tanstack/react-query";
+
 import { AppContainer } from "../../components";
-import { styled } from "@mui/system";
 
 function ThumbnailViewerScreen() {
   const navigate = useNavigate();

@@ -1,8 +1,9 @@
-import { CustomRouter } from "./routing";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Auth0Provider } from "@auth0/auth0-react";
+
+import { CustomRouter } from "./routing";
 
 function App() {
   const queryClient = new QueryClient();
