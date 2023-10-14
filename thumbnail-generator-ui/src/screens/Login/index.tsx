@@ -1,9 +1,9 @@
 import { Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { AppContainer } from "../../components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginScreen() {
-  const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <AppContainer>
@@ -14,7 +14,7 @@ function LoginScreen() {
       <Button
         variant="contained"
         size="large"
-        onClick={() => navigate("/image-chooser")}
+        onClick={() => loginWithRedirect()}
       >
         Login to continue
       </Button>

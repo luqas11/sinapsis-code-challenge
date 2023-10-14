@@ -1,9 +1,9 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
-import { useNavigate } from "react-router-dom";
 
 const AppContainer = ({ children }) => {
-  const navigate = useNavigate();
+  const { logout } = useAuth0();
 
   return (
     <>
@@ -12,7 +12,15 @@ const AppContainer = ({ children }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Thumbnail Generator
           </Typography>
-          <Button onClick={() => navigate("/login")}>Logout</Button>
+          <Button
+            onClick={() =>
+              logout({
+                logoutParams: { returnTo: window.location.origin + "/login" },
+              })
+            }
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
