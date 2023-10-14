@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Move to frontend folder
+        run: cd ./thumbnail-generator-ui
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -34,8 +36,6 @@ jobs:
           cache: npm
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: Move to frontend folder
-        run: cd ./thumbnail-generator-ui
       - name: Install dependencies
         run: npm install
       - name: Build with Vite
