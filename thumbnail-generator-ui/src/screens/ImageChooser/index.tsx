@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { styled } from "@mui/system";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import {
@@ -15,21 +13,15 @@ import {
 } from "@mui/material";
 
 import { AppContainer } from "../../components";
+import { useThumbnails } from "../../helpers";
 
 function ImageChooserScreen() {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
-
-  const mutation = useMutation({
-    mutationKey: ["thumbnails"],
-    mutationFn: async (selectedImage: string) => {
-      const response = await axios.get("http://localhost:3000/get-thumbnails");
-      return response.data;
-    },
-  });
+  const { mutate } = useThumbnails();
 
   const getThumbnails = (selectedImage: string) => {
-    mutation.mutate(selectedImage);
+    mutate(selectedImage);
     navigate("/thumbnail-viewer");
   };
 
@@ -40,12 +32,6 @@ function ImageChooserScreen() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  });
-
-  const ImageCardMedia = styled(CardMedia)({
-    objectFit: "contain",
-    width: "100%",
-    height: "100%",
   });
 
   return (
@@ -62,7 +48,15 @@ function ImageChooserScreen() {
             onClick={() => setImage("../../../mock_images/original.jpg")}
           >
             {image ? (
-              <ImageCardMedia component="img" image={image} />
+              <CardMedia
+                component="img"
+                image={image}
+                sx={{
+                  objectFit: "contain",
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
             ) : (
               <Box
                 sx={{
