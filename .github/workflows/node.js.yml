@@ -45,7 +45,7 @@ jobs:
           envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           file_name: .env.local
       - name: Test env file generation
-        run: ls
+        run: ls -la
       - name: Build with Vite
         run: npm run build
       - name: Upload artifact
