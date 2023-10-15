@@ -46,7 +46,7 @@ jobs:
           file_name: .env.local
           directory: ./thumbnail-generator-ui/
       - name: Test env file generation
-        run: ls -la
+        run: cat .env.local
       - name: Build with Vite
         run: npm run build
       - name: Upload artifact
