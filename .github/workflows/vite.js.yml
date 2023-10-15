@@ -1,7 +1,7 @@
 name: Deploy Vite site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the develop branch
   push:
     branches: "develop"
 
@@ -35,7 +35,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
