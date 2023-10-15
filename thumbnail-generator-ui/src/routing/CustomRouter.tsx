@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import {
   ImageChooserScreen,
@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const CustomRouter = () => {
   return (
-    <HashRouter basename={import.meta.env.VITE_ROUTE_BASENAME}>
+    <BrowserRouter basename={import.meta.env.VITE_ROUTE_BASENAME}>
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace={true} />} />
         <Route
@@ -38,7 +38,7 @@ const CustomRouter = () => {
           }
         />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

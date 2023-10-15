@@ -20,9 +20,7 @@ const AppContainer = ({ children }: Props) => {
             <Button
               onClick={() =>
                 logout({
-                  logoutParams: {
-                    returnTo: window.location.origin + "/#/login",
-                  },
+                  logoutParams: { returnTo: window.location.origin + "/login" },
                 })
               }
             >
