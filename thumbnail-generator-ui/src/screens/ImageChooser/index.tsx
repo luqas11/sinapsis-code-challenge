@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/system";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -25,13 +25,14 @@ function ImageChooserScreen() {
     navigate("/thumbnail-viewer");
   };
 
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedImage = e.target.files?.[0];
     if (selectedImage) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        setImage(e.target.result);
+        if (e.target && typeof e.target.result === "string")
+          setImage(e.target.result);
       };
 
       reader.readAsDataURL(selectedImage);
@@ -68,7 +69,7 @@ function ImageChooserScreen() {
         Images will be automatically cropped to fit the thumbnails sizes.
       </Typography>
       <Card>
-        <ImageCardActionArea component="label">
+        <ImageCardActionArea {...{ component: "label" }}>
           <VisuallyHiddenInput
             type="file"
             accept=".jpeg, .png"
