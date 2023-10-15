@@ -43,6 +43,7 @@ jobs:
         with:
           envkey_VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
           envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+          envkey_VITE_TEST_ENV_VAR: ${{ secrets.VITE_TEST_ENV_VAR }}
           file_name: .env.production
           directory: ./thumbnail-generator-ui/
       - name: Build with Vite
