@@ -38,6 +38,12 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install dependencies
         run: npm install
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+          envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+          directory: .
       - name: Build with Vite
         run: npm run build
       - name: Upload artifact
