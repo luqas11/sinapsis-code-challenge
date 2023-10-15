@@ -33,7 +33,8 @@ function ThumbnailViewerScreen() {
   const data = useMutationState({
     filters: { mutationKey: ["thumbnails"] },
   });
-  const itemData = data[data.length - 1]?.data;
+  const itemData = data[data.length - 1].data;
+  const mutationStatus = data[data.length - 1].status;
 
   const copyTextToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -60,37 +61,43 @@ function ThumbnailViewerScreen() {
   return (
     <AppContainer>
       <Typography variant="h4">Generated thumbnails</Typography>
-      {Array.isArray(itemData) && (
-        <Typography variant="body1">
-          The thumbnails were successfully generated.
+      {mutationStatus === "success" && (
+        <>
+          <Typography variant="body1">
+            The thumbnails were successfully generated.
+          </Typography>
+          <Grid container justifyContent="center" sx={{ gap: 4 }}>
+            {Array.isArray(itemData) &&
+              itemData.map((item, index) => (
+                <Grid item key={item.label}>
+                  <Grow in style={{ transitionDelay: index * 50 + "ms" }}>
+                    <ImageCard>
+                      <Typography variant="h6">{item.label}</Typography>
+                      <ImageItem src={item.url} />
+                      <Button
+                        variant="contained"
+                        startIcon={<ContentCopyIcon />}
+                        onClick={() => {
+                          copyTextToClipboard(item.url);
+                          setOpenSnackbar(true);
+                        }}
+                      >
+                        Copy URL
+                      </Button>
+                    </ImageCard>
+                  </Grow>
+                </Grid>
+              ))}
+          </Grid>
+        </>
+      )}
+      {mutationStatus === "error" && (
+        <Typography variant="body1" color="#FF4444">
+          The thumbnails couldn't be generated. Try again later.
         </Typography>
       )}
-      <Grid container justifyContent="center" sx={{ gap: 4 }}>
-        {Array.isArray(itemData) ? (
-          itemData.map((item, index) => (
-            <Grid item key={item.label}>
-              <Grow in style={{ transitionDelay: index * 50 + "ms" }}>
-                <ImageCard>
-                  <Typography variant="h6">{item.label}</Typography>
-                  <ImageItem src={item.url} />
-                  <Button
-                    variant="contained"
-                    startIcon={<ContentCopyIcon />}
-                    onClick={() => {
-                      copyTextToClipboard(item.url);
-                      setOpenSnackbar(true);
-                    }}
-                  >
-                    Copy URL
-                  </Button>
-                </ImageCard>
-              </Grow>
-            </Grid>
-          ))
-        ) : (
-          <CircularProgress />
-        )}
-      </Grid>
+      {mutationStatus === "pending" && <CircularProgress />}
+
       <Button variant="contained" onClick={() => navigate("/image-chooser")}>
         Choose another image
       </Button>
