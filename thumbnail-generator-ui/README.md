@@ -1,27 +1,10 @@
-# React + TypeScript + Vite
+# Thumbnail Generator UI
+Simple UI/UX for a thumbnail generator, part of the [Sinapsis Technical Code Challenge](https://github.com/sinapsis-co/sinapsis-code-challenge).
+## How to run
+The app is a React project built with Vite, and can be locally launched with the following steps:
+1) Create a `.env.local` file with the keys specified in the `.env` example file, taking the values from a valid Auth0 project.
+2) Run `npm install` to install necessary dependencies.
+3) Run `npm run dev` to launch de app in development mode.
+4) Run `npm run mock` to run de mock server for BE endpoints.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The app should be available at http://localhost:5173. The login must be done with valid Auth0 credentials for the configured project.
