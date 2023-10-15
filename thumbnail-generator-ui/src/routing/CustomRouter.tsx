@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const CustomRouter = () => {
   return (
-    <BrowserRouter basename="/sinapsis-code-challenge">
+    <BrowserRouter>
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace={true} />} />
         <Route
