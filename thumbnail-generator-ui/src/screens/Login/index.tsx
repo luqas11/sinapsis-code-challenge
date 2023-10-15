@@ -1,9 +1,9 @@
 import { Button, Typography } from "@mui/material";
 import { AppContainer } from "../../components";
-//import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginScreen() {
-  //const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <AppContainer>
@@ -14,7 +14,7 @@ function LoginScreen() {
       <Button
         variant="contained"
         size="large"
-        onClick={() => console.log(import.meta.env.VITE_TEST_ENV_VAR)}
+        onClick={() => loginWithRedirect()}
       >
         Login to continue
       </Button>
