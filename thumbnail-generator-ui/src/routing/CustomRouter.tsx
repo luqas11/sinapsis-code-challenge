@@ -8,6 +8,11 @@ import {
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
+/**
+ * Main app router. Implements login, image chooser and thumbnail viewer routes, handling
+ * authorization logic to navigate the user to the public or protected routes depending on
+ * it's authorization state.
+ */
 const CustomRouter = () => {
   return (
     <BrowserRouter basename={import.meta.env.VITE_ROUTE_BASENAME}>

@@ -15,12 +15,16 @@ import {
 import { AppContainer } from "../../components";
 import { useThumbnails } from "../../helpers";
 
-function ImageChooserScreen() {
+/**
+ * Screen to choose an image to generate the thumbnails with. Allows the user to pick a
+ * file from it's local system, preview it and use it for the thumbnail generation.
+ */
+const ImageChooserScreen = () => {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
   const { mutate } = useThumbnails();
 
-  const getThumbnails = (selectedImage: string) => {
+  const handleGenerateThumbnails = (selectedImage: string) => {
     mutate(selectedImage);
     navigate("/thumbnail-viewer");
   };
@@ -106,13 +110,13 @@ function ImageChooserScreen() {
           variant="contained"
           size="large"
           disabled={!image}
-          onClick={() => getThumbnails(image)}
+          onClick={() => handleGenerateThumbnails(image)}
         >
           Generate thumbnails
         </Button>
       </CardActions>
     </AppContainer>
   );
-}
+};
 
 export default ImageChooserScreen;

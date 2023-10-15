@@ -1,6 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
+/**
+ * Hook to encapsulate server state logic through a Tanstack Query mutation.
+ */
 const useThumbnails = () => {
   return useMutation({
     mutationKey: ["thumbnails"],

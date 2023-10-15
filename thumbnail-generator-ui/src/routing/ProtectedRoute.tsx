@@ -5,6 +5,10 @@ type Props = {
   children: React.ReactNode;
 };
 
+/**
+ * Protected routes wrapper, to check the authentication status of the user and perform a
+ * redirect to the login route if necessary.
+ */
 const ProtectedRoute = ({ children }: Props) => {
   const { isAuthenticated, isLoading } = useAuth0();
 

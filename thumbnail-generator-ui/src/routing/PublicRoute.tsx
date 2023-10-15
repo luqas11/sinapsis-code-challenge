@@ -5,6 +5,10 @@ type Props = {
   children: React.ReactNode;
 };
 
+/**
+ * Public routes wrapper, to check the authentication status of the user and perform a
+ * redirect to the image chooser route if necessary.
+ */
 const PublicRoute = ({ children }: Props) => {
   const { isAuthenticated, isLoading } = useAuth0();
 

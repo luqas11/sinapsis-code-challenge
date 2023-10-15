@@ -15,28 +15,31 @@ import {
 
 import { AppContainer } from "../../components";
 
-function ThumbnailViewerScreen() {
+/**
+ * Screen to display the generated thumbnails and allow the user to copy it's URLs.
+ */
+const ThumbnailViewerScreen = () => {
   const navigate = useNavigate();
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
 
-  const handleClose = (
+  const data = useMutationState({
+    filters: { mutationKey: ["thumbnails"] },
+  });
+  const thumbnailsData = data[data.length - 1].data;
+  const mutationStatus = data[data.length - 1].status;
+
+  const closeSnackbar = (
     _event: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {
       return;
     }
-
-    setOpenSnackbar(false);
+    setIsOpenSnackbar(false);
   };
 
-  const data = useMutationState({
-    filters: { mutationKey: ["thumbnails"] },
-  });
-  const itemData = data[data.length - 1].data;
-  const mutationStatus = data[data.length - 1].status;
-
-  const copyTextToClipboard = (text: string) => {
+  const handleCopyURL = (text: string) => {
+    setIsOpenSnackbar(true);
     navigator.clipboard.writeText(text);
   };
 
@@ -67,8 +70,8 @@ function ThumbnailViewerScreen() {
             The thumbnails were successfully generated.
           </Typography>
           <Grid container justifyContent="center" sx={{ gap: 4 }}>
-            {Array.isArray(itemData) &&
-              itemData.map((item, index) => (
+            {Array.isArray(thumbnailsData) &&
+              thumbnailsData.map((item, index) => (
                 <Grid item key={item.label}>
                   <Grow in style={{ transitionDelay: index * 50 + "ms" }}>
                     <ImageCard>
@@ -77,10 +80,7 @@ function ThumbnailViewerScreen() {
                       <Button
                         variant="contained"
                         startIcon={<ContentCopyIcon />}
-                        onClick={() => {
-                          copyTextToClipboard(item.url);
-                          setOpenSnackbar(true);
-                        }}
+                        onClick={() => handleCopyURL(item.url)}
                       >
                         Copy URL
                       </Button>
@@ -97,18 +97,17 @@ function ThumbnailViewerScreen() {
         </Typography>
       )}
       {mutationStatus === "pending" && <CircularProgress />}
-
       <Button variant="contained" onClick={() => navigate("/image-chooser")}>
         Choose another image
       </Button>
       <Snackbar
-        open={openSnackbar}
+        open={isOpenSnackbar}
         autoHideDuration={3000}
-        onClose={handleClose}
+        onClose={closeSnackbar}
         message="URL copied!"
       />
     </AppContainer>
   );
-}
+};
 
 export default ThumbnailViewerScreen;

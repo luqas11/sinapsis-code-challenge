@@ -6,6 +6,10 @@ type Props = {
   children: React.ReactNode;
 };
 
+/**
+ * Container that has the common UI for the whole app, composed by a title and an appbar
+ * with a logout button.
+ */
 const AppContainer = ({ children }: Props) => {
   const { logout, isAuthenticated } = useAuth0();
 

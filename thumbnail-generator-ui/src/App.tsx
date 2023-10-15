@@ -7,7 +7,6 @@ import { CustomRouter } from "./routing";
 
 function App() {
   const queryClient = new QueryClient();
-
   const customTheme = createTheme({
     palette: {
       mode: "dark",
@@ -15,22 +14,20 @@ function App() {
   });
 
   return (
-    <>
-      <Auth0Provider
-        domain={import.meta.env.VITE_AUTH0_DOMAIN}
-        clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-        authorizationParams={{
-          redirect_uri: window.location.origin + "/image-chooser",
-        }}
-      >
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={customTheme}>
-            <CssBaseline />
-            <CustomRouter />
-          </ThemeProvider>
-        </QueryClientProvider>
-      </Auth0Provider>
-    </>
+    <Auth0Provider
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+      authorizationParams={{
+        redirect_uri: window.location.origin + "/image-chooser",
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={customTheme}>
+          <CssBaseline />
+          <CustomRouter />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </Auth0Provider>
   );
 }
 
