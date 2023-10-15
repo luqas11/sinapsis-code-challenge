@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const CustomRouter = () => {
   return (
-    <BrowserRouter basename="/sinapsis-code-challenge">
+    <BrowserRouter basename={import.meta.env.VITE_ROUTE_BASENAME}>
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace={true} />} />
         <Route
