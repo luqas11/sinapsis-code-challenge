@@ -43,7 +43,9 @@ jobs:
         with:
           envkey_VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
           envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
-          directory: .
+          file_name: .env.local
+      - name: Test secret
+        run: echo ${{ secrets.TEST_SECRET }}
       - name: Build with Vite
         run: npm run build
       - name: Upload artifact
