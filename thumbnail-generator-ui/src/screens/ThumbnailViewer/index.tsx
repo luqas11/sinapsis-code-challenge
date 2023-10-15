@@ -96,7 +96,7 @@ function ThumbnailViewerScreen() {
       </Button>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={4000}
+        autoHideDuration={3000}
         onClose={handleClose}
         message="URL copied!"
       />

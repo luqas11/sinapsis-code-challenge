@@ -60,59 +60,57 @@ function ImageChooserScreen() {
   });
 
   return (
-    <>
-      <AppContainer>
-        <Typography variant="h4">Choose an image</Typography>
-        <Typography variant="body1" textAlign="center">
-          Only JPEG and PNG files with a maximum size of 11MB are allowed.
-          <br></br>
-          Images will be automatically cropped to fit the thumbnails sizes.
-        </Typography>
-        <Card>
-          <ImageCardActionArea component="label">
-            <VisuallyHiddenInput
-              type="file"
-              accept=".jpeg, .png"
-              onChange={handleImageChange}
+    <AppContainer>
+      <Typography variant="h4">Choose an image</Typography>
+      <Typography variant="body1" textAlign="center">
+        Only JPEG and PNG files with a maximum size of 11MB are allowed.
+        <br></br>
+        Images will be automatically cropped to fit the thumbnails sizes.
+      </Typography>
+      <Card>
+        <ImageCardActionArea component="label">
+          <VisuallyHiddenInput
+            type="file"
+            accept=".jpeg, .png"
+            onChange={handleImageChange}
+          />
+          {image ? (
+            <CardMedia
+              component="img"
+              image={image}
+              sx={{
+                objectFit: "contain",
+                width: "100%",
+                height: "100%",
+              }}
             />
-            {image ? (
-              <CardMedia
-                component="img"
-                image={image}
-                sx={{
-                  objectFit: "contain",
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
-                <Typography variant="body1">
-                  Choose an image from your local files.
-                </Typography>
-              </Box>
-            )}
-          </ImageCardActionArea>
-        </Card>
-        <CardActions>
-          <Button
-            variant="contained"
-            size="large"
-            disabled={!image}
-            onClick={() => getThumbnails(image)}
-          >
-            Generate thumbnails
-          </Button>
-        </CardActions>
-      </AppContainer>
-    </>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
+              <Typography variant="body1">
+                Choose an image from your local files.
+              </Typography>
+            </Box>
+          )}
+        </ImageCardActionArea>
+      </Card>
+      <CardActions>
+        <Button
+          variant="contained"
+          size="large"
+          disabled={!image}
+          onClick={() => getThumbnails(image)}
+        >
+          Generate thumbnails
+        </Button>
+      </CardActions>
+    </AppContainer>
   );
 }
 
