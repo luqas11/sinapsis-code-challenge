@@ -43,10 +43,8 @@ jobs:
         with:
           envkey_VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
           envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
-          file_name: .env.local
+          file_name: .env.production
           directory: ./thumbnail-generator-ui/
-      - name: Test env file generation
-        run: cat .env.local
       - name: Build with Vite
         run: npm run build
       - name: Upload artifact
