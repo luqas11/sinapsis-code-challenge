@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutationState } from "@tanstack/react-query";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -9,17 +10,34 @@ import {
   Grid,
   Card,
   Grow,
+  Snackbar,
 } from "@mui/material";
 
 import { AppContainer } from "../../components";
 
 function ThumbnailViewerScreen() {
   const navigate = useNavigate();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
 
   const data = useMutationState({
     filters: { mutationKey: ["thumbnails"] },
   });
   const itemData = data[data.length - 1]?.data;
+
+  const copyTextToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
 
   const ImageCard = styled(Card)({
     height: 270,
@@ -55,7 +73,14 @@ function ThumbnailViewerScreen() {
                 <ImageCard>
                   <Typography variant="h6">{item.label}</Typography>
                   <ImageItem src={item.url} />
-                  <Button variant="contained" startIcon={<ContentCopyIcon />}>
+                  <Button
+                    variant="contained"
+                    startIcon={<ContentCopyIcon />}
+                    onClick={() => {
+                      copyTextToClipboard(item.url);
+                      setOpenSnackbar(true);
+                    }}
+                  >
                     Copy URL
                   </Button>
                 </ImageCard>
@@ -69,6 +94,12 @@ function ThumbnailViewerScreen() {
       <Button variant="contained" onClick={() => navigate("/image-chooser")}>
         Choose another image
       </Button>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="URL copied!"
+      />
     </AppContainer>
   );
 }

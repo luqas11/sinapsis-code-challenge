@@ -5,8 +5,9 @@ const useThumbnails = () => {
   return useMutation({
     mutationKey: ["thumbnails"],
     mutationFn: async (selectedImage: string) => {
-      console.log(selectedImage);
-      const response = await axios.get("http://localhost:3000/get-thumbnails");
+      const response = await axios.get("http://localhost:3000/get-thumbnails", {
+        data: { image: selectedImage },
+      });
       return response.data;
     },
   });

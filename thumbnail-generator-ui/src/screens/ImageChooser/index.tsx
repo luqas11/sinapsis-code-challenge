@@ -25,6 +25,19 @@ function ImageChooserScreen() {
     navigate("/thumbnail-viewer");
   };
 
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+
+      reader.readAsDataURL(selectedImage);
+    }
+  };
+
   const ImageCardActionArea = styled(CardActionArea)({
     height: 300,
     width: 350,
@@ -32,6 +45,18 @@ function ImageChooserScreen() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  });
+
+  const VisuallyHiddenInput = styled("input")({
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
+    height: 1,
+    overflow: "hidden",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    whiteSpace: "nowrap",
+    width: 1,
   });
 
   return (
@@ -44,9 +69,12 @@ function ImageChooserScreen() {
           Images will be automatically cropped to fit the thumbnails sizes.
         </Typography>
         <Card>
-          <ImageCardActionArea
-            onClick={() => setImage("../../../mock_images/original.jpg")}
-          >
+          <ImageCardActionArea component="label">
+            <VisuallyHiddenInput
+              type="file"
+              accept=".jpeg, .png"
+              onChange={handleImageChange}
+            />
             {image ? (
               <CardMedia
                 component="img"
