@@ -3,7 +3,7 @@ name: Deploy React App to Firebase Hosting
 on:
   # Runs on pushes targeting the develop branch
   push:
-    branches: "develop"
+    branches: ["develop", "master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -48,4 +48,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THUMBNAIL_GENERATOR_A868D }}'
           projectId: thumbnail-generator-a868d
           entryPoint: ./thumbnail-generator-ui/
-          channelId: live
+          channelId: ${{ github.ref == 'refs/heads/master' && 'live' || 'stage' }}
