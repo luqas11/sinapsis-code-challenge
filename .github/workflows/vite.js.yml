@@ -46,6 +46,7 @@ jobs:
           envkey_VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
           envkey_VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           envkey_VITE_ROUTE_BASENAME: ${{ vars.VITE_ROUTE_BASENAME }}
+          envkey_VITE_MOCK_BE: ${{ vars.VITE_MOCK_BE }}
           file_name: .env.production
           directory: ./thumbnail-generator-ui/
           fail_on_empty: true
