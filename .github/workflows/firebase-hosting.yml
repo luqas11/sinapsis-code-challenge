@@ -17,7 +17,7 @@ concurrency:
 jobs:
   deploy:
     environment:
-      name: github-pages
+      name: firebase-hosting
     runs-on: ubuntu-latest
     defaults:
       run:
