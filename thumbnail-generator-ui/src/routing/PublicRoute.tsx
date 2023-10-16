@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";
 
+import { ROUTES } from "../helpers";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -16,7 +18,7 @@ const PublicRoute = ({ children }: Props) => {
     return <div>Loading...</div>;
   }
   if (isAuthenticated) {
-    return <Navigate to="/image-chooser" replace />;
+    return <Navigate to={ROUTES.IMAGE_CHOOSER} replace />;
   }
   return children;
 };

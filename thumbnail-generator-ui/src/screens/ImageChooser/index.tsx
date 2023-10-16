@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 import { AppContainer } from "../../components";
-import { useThumbnails } from "../../helpers";
+import { ROUTES, useThumbnails } from "../../helpers";
 
 /**
  * Screen to choose an image to generate the thumbnails with. Allows the user to pick a
@@ -26,7 +26,7 @@ const ImageChooserScreen = () => {
 
   const handleGenerateThumbnails = (selectedImage: string) => {
     mutate(selectedImage);
-    navigate("/thumbnail-viewer");
+    navigate(ROUTES.THUMBNAIL_VIEWER);
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {

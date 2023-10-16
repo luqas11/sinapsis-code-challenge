@@ -7,6 +7,7 @@ import {
 } from "../screens";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import { ROUTES } from "../helpers";
 
 /**
  * Main app router. Implements login, image chooser and thumbnail viewer routes, handling
@@ -17,9 +18,9 @@ const CustomRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Navigate to="/login" replace={true} />} />
+        <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
         <Route
-          path="/login"
+          path={ROUTES.LOGIN}
           element={
             <PublicRoute>
               <LoginScreen />
@@ -27,7 +28,7 @@ const CustomRouter = () => {
           }
         />
         <Route
-          path="/image-chooser"
+          path={ROUTES.IMAGE_CHOOSER}
           element={
             <ProtectedRoute>
               <ImageChooserScreen />
@@ -35,7 +36,7 @@ const CustomRouter = () => {
           }
         />
         <Route
-          path="/thumbnail-viewer"
+          path={ROUTES.THUMBNAIL_VIEWER}
           element={
             <ProtectedRoute>
               <ThumbnailViewerScreen />

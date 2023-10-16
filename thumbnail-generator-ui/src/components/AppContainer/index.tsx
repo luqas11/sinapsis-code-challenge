@@ -2,6 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
 
+import { ROUTES } from "../../helpers";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -24,7 +26,9 @@ const AppContainer = ({ children }: Props) => {
             <Button
               onClick={() =>
                 logout({
-                  logoutParams: { returnTo: window.location.origin + "/login" },
+                  logoutParams: {
+                    returnTo: window.location.origin + ROUTES.LOGIN,
+                  },
                 })
               }
             >

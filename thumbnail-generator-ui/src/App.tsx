@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { CustomRouter } from "./routing";
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, ROUTES } from "./helpers";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,10 +16,10 @@ function App() {
 
   return (
     <Auth0Provider
-      domain={import.meta.env.VITE_AUTH0_DOMAIN}
-      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+      domain={AUTH0_DOMAIN}
+      clientId={AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: window.location.origin + "/image-chooser",
+        redirect_uri: window.location.origin + ROUTES.IMAGE_CHOOSER,
       }}
     >
       <QueryClientProvider client={queryClient}>

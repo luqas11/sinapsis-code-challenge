@@ -1,5 +1,5 @@
 {
-  "get-thumbnails": [
+  "generate-thumbnails": [
     {
       "label": "120x120",
       "url": "/mock_images/120x120.png"

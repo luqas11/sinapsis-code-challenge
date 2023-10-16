@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 
 import { AppContainer } from "../../components";
+import { MUTATIONS, ROUTES } from "../../helpers";
 
 /**
  * Screen to display the generated thumbnails and allow the user to copy it's URLs.
@@ -23,7 +24,7 @@ const ThumbnailViewerScreen = () => {
   const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
 
   const data = useMutationState({
-    filters: { mutationKey: ["thumbnails"] },
+    filters: { mutationKey: [MUTATIONS.GENERATE_THUMBNAILS] },
   });
   const thumbnailsData = data[data.length - 1]?.data;
   const mutationStatus = data[data.length - 1]?.status;
@@ -99,7 +100,10 @@ const ThumbnailViewerScreen = () => {
           The thumbnails couldn't be generated. Try again later.
         </Typography>
       )}
-      <Button variant="contained" onClick={() => navigate("/image-chooser")}>
+      <Button
+        variant="contained"
+        onClick={() => navigate(ROUTES.IMAGE_CHOOSER)}
+      >
         Choose another image
       </Button>
       <Snackbar
