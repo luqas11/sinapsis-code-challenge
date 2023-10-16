@@ -25,8 +25,8 @@ const ThumbnailViewerScreen = () => {
   const data = useMutationState({
     filters: { mutationKey: ["thumbnails"] },
   });
-  const thumbnailsData = data[data.length - 1].data;
-  const mutationStatus = data[data.length - 1].status;
+  const thumbnailsData = data[data.length - 1]?.data;
+  const mutationStatus = data[data.length - 1]?.status;
 
   const closeSnackbar = (
     _event: React.SyntheticEvent | Event,
@@ -91,12 +91,12 @@ const ThumbnailViewerScreen = () => {
           </Grid>
         </>
       )}
-      {mutationStatus === "error" && (
+      {mutationStatus === "pending" && <CircularProgress />}
+      {mutationStatus !== "pending" && mutationStatus !== "success" && (
         <Typography variant="body1" color="#FF4444">
           The thumbnails couldn't be generated. Try again later.
         </Typography>
       )}
-      {mutationStatus === "pending" && <CircularProgress />}
       <Button variant="contained" onClick={() => navigate("/image-chooser")}>
         Choose another image
       </Button>
