@@ -43,13 +43,19 @@ const ImageChooserScreen = () => {
     }
   };
 
+  const ImageCard = styled(Card)({
+    aspectRatio: "7 / 6",
+    width: "100%",
+    maxWidth: 350,
+  });
+
   const ImageCardActionArea = styled(CardActionArea)({
-    height: 300,
-    width: 350,
+    height: "100%",
     backgroundColor: "#333333",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: 12,
   });
 
   const VisuallyHiddenInput = styled("input")({
@@ -66,13 +72,15 @@ const ImageChooserScreen = () => {
 
   return (
     <AppContainer>
-      <Typography variant="h4">Choose an image</Typography>
+      <Typography variant="h4" textAlign="center">
+        Choose an image
+      </Typography>
       <Typography variant="body1" textAlign="center">
         Only JPEG and PNG files with a maximum size of 11MB are allowed.
         <br></br>
         Images will be automatically cropped to fit the thumbnails sizes.
       </Typography>
-      <Card>
+      <ImageCard>
         <ImageCardActionArea {...{ component: "label" }}>
           <VisuallyHiddenInput
             type="file"
@@ -98,13 +106,13 @@ const ImageChooserScreen = () => {
               }}
             >
               <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
-              <Typography variant="body1">
+              <Typography variant="body1" textAlign="center">
                 Choose an image from your local files.
               </Typography>
             </Box>
           )}
         </ImageCardActionArea>
-      </Card>
+      </ImageCard>
       <CardActions>
         <Button
           variant="contained"

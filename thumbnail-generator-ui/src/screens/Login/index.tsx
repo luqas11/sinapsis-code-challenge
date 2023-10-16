@@ -11,7 +11,9 @@ const LoginScreen = () => {
 
   return (
     <AppContainer>
-      <Typography variant="h4">Thumbnail Generator</Typography>
+      <Typography variant="h4" textAlign="center">
+        Thumbnail Generator
+      </Typography>
       <Typography variant="body1" textAlign="center">
         A high quality, ultra-fast, and extremely useful thumbnail generator.
       </Typography>

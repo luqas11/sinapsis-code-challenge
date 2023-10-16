@@ -63,10 +63,12 @@ const ThumbnailViewerScreen = () => {
 
   return (
     <AppContainer>
-      <Typography variant="h4">Generated thumbnails</Typography>
+      <Typography variant="h4" textAlign="center">
+        Generated thumbnails
+      </Typography>
       {mutationStatus === "success" && (
         <>
-          <Typography variant="body1">
+          <Typography variant="body1" textAlign="center">
             The thumbnails were successfully generated.
           </Typography>
           <Grid container justifyContent="center" sx={{ gap: 4 }}>
@@ -93,7 +95,7 @@ const ThumbnailViewerScreen = () => {
       )}
       {mutationStatus === "pending" && <CircularProgress />}
       {mutationStatus !== "pending" && mutationStatus !== "success" && (
-        <Typography variant="body1" color="#FF4444">
+        <Typography variant="body1" color="#FF4444" textAlign="center">
           The thumbnails couldn't be generated. Try again later.
         </Typography>
       )}
