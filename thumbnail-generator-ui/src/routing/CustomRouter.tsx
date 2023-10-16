@@ -15,7 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
  */
 const CustomRouter = () => {
   return (
-    <BrowserRouter basename={import.meta.env.VITE_ROUTE_BASENAME}>
+    <BrowserRouter>
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace={true} />} />
         <Route
