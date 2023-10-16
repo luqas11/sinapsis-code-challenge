@@ -37,6 +37,7 @@ const useThumbnails = () => {
       });
       return response.data;
     },
+    gcTime: Infinity,
   });
 };
 
