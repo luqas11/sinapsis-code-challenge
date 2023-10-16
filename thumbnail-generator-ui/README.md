@@ -7,7 +7,7 @@ Currently available at https://thumbnail-generator-a868d.firebaseapp.com/.
 
 The app is a React project built with Vite, and can be locally launched with the following steps:
 
-1. Create a `.env.local` file with the keys specified in the `.env` example file. The `VITE_AUTH0_CLIENT_ID` and `VITE_AUTH0_DOMAIN` keys must be valid values from an Auth0 project, and the `VITE_MOCK_BE` must be `false`.
+1. Create a `.env.local` file copying the content of the `.env` example file. The `VITE_AUTH0_CLIENT_ID` and `VITE_AUTH0_DOMAIN` keys must be replaced by valid values from an Auth0 project.
 2. Run `npm install` to install necessary dependencies.
 3. Run `npm run dev` to launch the app in development mode.
 4. Run `npm run mock` to run the `json-server` mock.
