@@ -1,6 +1,7 @@
 # Thumbnail Generator UI
 
-Simple UI/UX for a thumbnail generator, part of the [Sinapsis Technical Code Challenge](https://github.com/sinapsis-co/sinapsis-code-challenge).
+Simple UI/UX for a thumbnail generator, part of the [Sinapsis Technical Code Challenge](https://github.com/sinapsis-co/sinapsis-code-challenge).  
+Currently available at https://thumbnail-generator-a868d.firebaseapp.com/.
 
 ## How to run
 
@@ -13,4 +14,4 @@ The app is a React project built with Vite, and can be locally launched with the
 
 The app should be available at http://localhost:5173. The login must be done with valid Auth0 credentials for the configured project.
 
-Additionally, you can override the BE requests with an internal mock, setting `VITE_MOCK_BE` to `true`. That will just bypass the API call and return hardcoded responses (useful if you can't run `json-server` in your environment).
+Additionally, you can override the BE requests with an internal mock, setting `VITE_MOCK_BE` to `true`. That will just bypass the API calls and return hardcoded responses with a faked delay (useful if you can't run `json-server` in your environment).
