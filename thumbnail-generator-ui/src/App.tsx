@@ -6,7 +6,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CustomRouter } from "./routing";
 import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, ROUTES } from "./helpers";
 
-function App() {
+/**
+ * Main app component, with the wrappers and config required by the project's dependencies.
+ */
+const App = () => {
   const queryClient = new QueryClient();
   const customTheme = createTheme({
     palette: {
@@ -30,6 +33,6 @@ function App() {
       </QueryClientProvider>
     </Auth0Provider>
   );
-}
+};
 
 export default App;

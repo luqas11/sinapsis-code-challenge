@@ -9,8 +9,8 @@ type Props = {
 };
 
 /**
- * Container that has the common UI for the whole app, composed by a title and an appbar
- * with a logout button.
+ * Container that has common UI for the whole app, composed by an appbar with a title and a
+ * conditionally rendered logout button.
  */
 const AppContainer = ({ children }: Props) => {
   const { logout, isAuthenticated } = useAuth0();
@@ -19,7 +19,7 @@ const AppContainer = ({ children }: Props) => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flex: 1 }}>
             Thumbnail Generator
           </Typography>
           {isAuthenticated && (

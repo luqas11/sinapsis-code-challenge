@@ -17,7 +17,7 @@ import { AppContainer } from "../../components";
 import { MUTATIONS, ROUTES } from "../../helpers";
 
 /**
- * Screen to display the generated thumbnails and allow the user to copy it's URLs.
+ * Screen to display the generated thumbnails and allow the user to copy their URLs.
  */
 const ThumbnailViewerScreen = () => {
   const navigate = useNavigate();

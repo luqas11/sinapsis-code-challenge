@@ -11,8 +11,8 @@ import { ROUTES } from "../helpers";
 
 /**
  * Main app router. Implements login, image chooser and thumbnail viewer routes, handling
- * authorization logic to navigate the user to the public or protected routes depending on
- * it's authorization state.
+ * authorization logic to redirect the user to the public or protected routes depending on it's
+ * authentication state.
  */
 const CustomRouter = () => {
   return (

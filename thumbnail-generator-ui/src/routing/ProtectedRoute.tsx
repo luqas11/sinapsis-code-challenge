@@ -8,8 +8,8 @@ type Props = {
 };
 
 /**
- * Protected routes wrapper, to check the authentication status of the user and perform a
- * redirect to the login route if necessary.
+ * Protected routes wrapper, to check the authentication status of the user and perform a redirect
+ * to the login route if the user is not logged in.
  */
 const ProtectedRoute = ({ children }: Props) => {
   const { isAuthenticated, isLoading } = useAuth0();

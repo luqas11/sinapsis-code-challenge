@@ -8,8 +8,8 @@ type Props = {
 };
 
 /**
- * Public routes wrapper, to check the authentication status of the user and perform a
- * redirect to the image chooser route if necessary.
+ * Public routes wrapper, to check the authentication status of the user and perform a redirect to
+ * the image chooser route if the user is logged in.
  */
 const PublicRoute = ({ children }: Props) => {
   const { isAuthenticated, isLoading } = useAuth0();

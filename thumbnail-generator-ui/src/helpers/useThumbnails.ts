@@ -20,13 +20,13 @@ const MOCK_VALUES = [
 ];
 
 /**
- * Hook to encapsulate server state logic through a Tanstack Query mutation.
+ * Hook to encapsulate server state logic, implemented with a Tanstack Query mutation.
  */
 const useThumbnails = () => {
   return useMutation({
     mutationKey: [MUTATIONS.GENERATE_THUMBNAILS],
     mutationFn: async (selectedImage: string) => {
-      // If the env var is true, override the API call and return a hardcoded response with a faked delay
+      // If the MOCK_BACKEND env var is true, override the API call and return a hardcoded response with a faked delay
       if (MOCK_BACKEND) {
         await new Promise((r) => setTimeout(r, MOCK_DELAY));
         return MOCK_VALUES;
