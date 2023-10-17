@@ -45,11 +45,10 @@ const ThumbnailViewerScreen = () => {
   };
 
   const ImageCard = styled(Card)({
-    height: 270,
+    height: 300,
     width: 200,
     backgroundColor: "#333333",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
     gap: 14,
