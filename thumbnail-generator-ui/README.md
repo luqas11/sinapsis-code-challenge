@@ -20,7 +20,7 @@ Additionally, you can override the BE requests with an internal mock, setting `V
 #### Tests
 The three screens and the only component in the app are covered by unit tests, which runs over the **Vitest** framework combined with **React Testing Library**.
 #### CI / CD
-The app is deployed in **Firebase Hosting** automatically throug a GitHub Action. Any push to the `master` branch, deploys to the `live` channel, and a push to any other branches deploys to the `stage` preview channel.
+The app is deployed in **Firebase Hosting** automatically through a GitHub Action. Any push to the `master` branch, deploys to the `live` channel, and a push to any other branches deploys to the `stage` preview channel.
 #### Mock
 There is a **JSON Server** mock, which is easy and quick to setup following the **How to run** steps. Also, the `VITE_MOCK_BACKEND` allows the dev to internally mock the server response with hardcoded data, making the app work without **JSON Server** running.
 #### Login
