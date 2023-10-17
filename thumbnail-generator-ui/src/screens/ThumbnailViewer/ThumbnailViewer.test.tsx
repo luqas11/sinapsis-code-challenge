@@ -1,6 +1,7 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, it, vi, expect } from "vitest";
+import { describe, it, vi, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import { useMutationState } from "@tanstack/react-query";
+import { BrowserRouter } from "react-router-dom";
 
 import ThumbnailViewer from ".";
 
@@ -28,23 +29,23 @@ vi.mock("@tanstack/react-query", () => ({
   ]),
 }));
 
-vi.mock("react-router-dom", () => ({
-  useNavigate: vi.fn(),
-}));
-
 describe("Thumbnail viewer", () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   it("Renders title", () => {
-    render(<ThumbnailViewer />);
+    render(
+      <BrowserRouter>
+        <ThumbnailViewer />
+      </BrowserRouter>
+    );
 
     screen.getAllByText("Generated thumbnails");
   });
 
   it("Renders success message and items labels", () => {
-    render(<ThumbnailViewer />);
+    render(
+      <BrowserRouter>
+        <ThumbnailViewer />
+      </BrowserRouter>
+    );
 
     screen.getByText("The thumbnails were successfully generated.");
     screen.getByText(MOCK_VALUES[0].label);
@@ -59,7 +60,11 @@ describe("Thumbnail viewer", () => {
       },
     ]);
 
-    render(<ThumbnailViewer />);
+    render(
+      <BrowserRouter>
+        <ThumbnailViewer />
+      </BrowserRouter>
+    );
 
     screen.getByText("The thumbnails couldn't be generated. Try again later.");
   });
@@ -71,7 +76,11 @@ describe("Thumbnail viewer", () => {
       },
     ]);
 
-    render(<ThumbnailViewer />);
+    render(
+      <BrowserRouter>
+        <ThumbnailViewer />
+      </BrowserRouter>
+    );
 
     const errorMessage = screen.queryByText(
       "The thumbnails couldn't be generated. Try again later."

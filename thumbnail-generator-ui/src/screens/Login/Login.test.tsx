@@ -1,21 +1,18 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, it, vi, expect } from "vitest";
+import { describe, it, vi, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Login from ".";
 
 const loginWithRedirect = vi.fn();
+
 vi.mock("@auth0/auth0-react", () => ({
-  useAuth0: vi.fn(() => ({
+  useAuth0: () => ({
     loginWithRedirect,
-  })),
+  }),
 }));
 
 describe("Login", () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   it("Renders title and description", () => {
     render(<Login />);
 

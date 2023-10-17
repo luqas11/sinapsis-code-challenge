@@ -1,27 +1,24 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, it, vi } from "vitest";
+import { describe, it, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 import ImageChooser from ".";
 
 vi.mock("@tanstack/react-query", () => ({
-  useMutation: vi.fn(() => ({
-    mutate: vi.fn(),
-  })),
-}));
-
-vi.mock("react-router-dom", () => ({
-  useNavigate: vi.fn(),
+  useMutation: () => ({
+    mutate: () => {},
+  }),
 }));
 
 describe("Image chooser", () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   it("Renders title and description", () => {
-    render(<ImageChooser />);
+    render(
+      <BrowserRouter>
+        <ImageChooser />
+      </BrowserRouter>
+    );
 
-    screen.getAllByText("Choose an image");
+    screen.getByText("Choose an image");
     screen.getByText(
       "Only JPEG and PNG files with a maximum size of 11MB are allowed.",
       { exact: false }
