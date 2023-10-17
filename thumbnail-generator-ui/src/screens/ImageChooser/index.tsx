@@ -17,7 +17,7 @@ import { ROUTES, useThumbnails } from "../../helpers";
 
 /**
  * Screen to choose an image to generate the thumbnails with. Allows the user to pick a
- * file from it's local system, preview it and use it for the thumbnail generation.
+ * file from it's local system, preview it, and use it for the thumbnail generation.
  */
 const ImageChooserScreen = () => {
   const [image, setImage] = useState("");
@@ -58,18 +58,6 @@ const ImageChooserScreen = () => {
     padding: 12,
   });
 
-  const VisuallyHiddenInput = styled("input")({
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    height: 1,
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    whiteSpace: "nowrap",
-    width: 1,
-  });
-
   return (
     <AppContainer>
       <Typography variant="h4" textAlign="center">
@@ -82,7 +70,8 @@ const ImageChooserScreen = () => {
       </Typography>
       <ImageCard>
         <ImageCardActionArea {...{ component: "label" }}>
-          <VisuallyHiddenInput
+          <input
+            style={{ display: "none" }}
             type="file"
             accept=".jpeg, .png"
             onChange={handleImageChange}
